@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block titulo %}Nosotros{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Sobre Nosotros</h1>
+    <div class="row align-items-center">
+        <!-- Imagen de la peluquería -->
+        <div class="col-md-6">
+            <img src="ruta_de_tu_imagen.jpg" class="img-fluid rounded shadow-lg" alt="Sobre nosotros" />
+        </div>
+
+        <!-- Texto sobre la empresa -->
+        <div class="col-md-6">
+            <h2 class="mb-3">Bienvenidos a DigiStyle Peluquería</h2>
+            <p class="lead">
+                En DigiStyle, nos dedicamos a resaltar la belleza de cada uno de nuestros clientes. Con más de
+                10 años de experiencia, contamos con un equipo de profesionales altamente capacitados que 
+                están comprometidos en ofrecer el mejor servicio posible. Nos enorgullece brindar un 
+                ambiente acogedor y personalizado para cada cliente.
+            </p>
+            <p>
+                Nuestra misión es proporcionarte una experiencia única, utilizando productos de alta calidad 
+                y las últimas técnicas de peluquería. Queremos que te sientas renovado y con un estilo que 
+                refleje tu personalidad.
+            </p>
+            <button class="btn btn-primary mt-3">Contáctanos</button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

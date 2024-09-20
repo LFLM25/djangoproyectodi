@@ -1,0 +1,8 @@
+{% block contenido %} 
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Renderiza todos los campos del formulario -->
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+{% endblock %}

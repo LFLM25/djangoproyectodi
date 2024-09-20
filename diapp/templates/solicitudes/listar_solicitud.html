@@ -1,0 +1,38 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Lista de Solicitudes {% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <h2>Lista de Solicitudes</h2>
+    <a class="btn btn-success" href="{% url 'crear_solicitud_dashboard' %}">Crear nueva solicitud</a>
+    <br></br>
+    <table class="table table-primary">
+            <tr>
+                <th>Descripción</th>
+                <th>Fecha de Creación</th>
+                <th>Estado</th>
+                <th>Servicio</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterar sobre las solicitudes y mostrar los datos -->
+            {% for solicitud in object_list %}
+            <tr>
+                <td>{{ solicitud.descripcion }}</td>
+                <td>{{ solicitud.fecha_creacion }}</td>
+                <td>{{ solicitud.estado|yesno:"Activo,Inactivo" }}</td>
+                <td>{{ solicitud.servicio_id }}</td>
+                <td>                  
+                    <a class="btn btn-danger" href="{% url 'eliminarsolicitud' solicitud.id %}">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <td colspan="4">No hay solicitudes disponibles.</td>
+            {% endfor %}
+        </tbody>
+    </table> 
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Servicios  {% endblock %}
+
+{% block contenido %} 
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Reportes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Generar Reportes</h1>
+        <p>Selecciona un reporte para descargar:</p>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="{% url "reporte_productos" %}" class="btn btn-primary">Reporte de Productos</a> 
+            </li>
+            <li class="list-group-item">
+                <a href="{% url "reporte_clientes" %}" class="btn btn-primary">Reporte de Clientes</a>
+            </li>
+            <li class="list-group-item">
+                <a href="{% url "reporte_citas" %}" class="btn btn-primary">Reporte de Citas</a>
+            </li>
+            <!-- Agrega más reportes según sea necesario -->
+        </ul>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Clientes  {% endblock %}
+
+{% block contenido %} 
+<h1>Esta seguro que quiere eliminar este Producto: "{{ object.name }}"?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'listainventario' %}">Cancel</a>
+{%endblock%}

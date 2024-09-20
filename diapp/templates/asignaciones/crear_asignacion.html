@@ -1,0 +1,35 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Crear cliente {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">Crear cliente</div>
+
+    <div class="card-body">
+
+        <h4 class="card-title">Información del cliente</h4>
+        <form method="post">
+            {% csrf_token %}
+            <label for="servicio">Servicio:</label>
+                <select name="servicio" id="servicio">
+            {% for servicio in servicios %}
+                 <option value="{{ servicio.id }}">{{ servicio.nombre }}</option>
+            {% endfor %}
+                </select>
+
+    <label for="empleado">Empleado:</label>
+    <select name="empleado" id="empleado">
+        {% for empleado in empleados %}
+            <option value="{{ empleado.id }}">{{ empleado.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="btn btn-primary">Asignar</button>
+    <a class="btn btn-secondary" href="{% url 'lista_asignacion' %}">Cancelar</a>
+</form>
+</div>
+<div class="card-footer text-muted"></div>
+</div>
+{% endblock %}

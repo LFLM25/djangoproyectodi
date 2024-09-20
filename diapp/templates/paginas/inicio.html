@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block titulo%} DigiStyle {% endblock%}
+
+{%  block contenido%}
+
+<body>
+
+    {% load static %}
+    <div class="container mt-5" style="background-coloe: url({% static 'images/' %}); background-size: cover; background-position: center; padding: 50px;">
+        <!-- Bienvenida -->
+        <div class="text-center mb-5">
+            <h1>Bienvenido a Digistyle</h1>
+            <p class="lead">Tu estilo, nuestra pasión. Agenda tu cita o descubre nuestros productos.</p>
+            <a href="{% url "productos" %}" class="btn btn-lg btn-primary">Explorar Productos</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'crear_cita_principal' %}" class="btn btn-lg btn-secondary">Agendar Cita</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="btn btn-secondary">Agendar Cita</a>
+            {% endif %}
+        </div>
+    
+        <!-- Sección de Servicios -->
+        <section id="servicios" class="mb-5">
+            <h2 class="text-center mb-4">Nuestros Servicios</h2>
+            <div class="row text-center">
+                <!-- Servicio 1 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm position-relative">
+                        <img
+                            src="{% static 'images/co.png' %}"
+                            class="card-img-top"
+                            alt="Corte de Pelo"
+                        />
+                        {% if user.is_authenticated %}
+                            <div class="card-body">
+                                <h5 class="card-title">Corte de Pelo</h5>
+                                <p class="card-text">Personaliza tu look con nuestros estilistas profesionales.</p>
+                                <a class="btn btn-primary" href="{% url 'crear_solicitud_principal' %}">Agendar Servicio</a>  
+                            </div>
+                        {% else %}
+                            <div class="card-body">
+                                <h5 class="card-title">Corte de Pelo</h5>
+                                <p class="card-text">Personaliza tu look con nuestros estilistas profesionales.</p>
+                                <a class="btn btn-primary" href="{% url 'login' %}">Agendar Servicio</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Servicio 2 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img
+                             src="{% static 'images/co1.jpg' %}"
+                            class="card-img-top"
+                            alt="Peinados"
+                        />
+                        {% if user.is_authenticated %}
+                        <div class="card-body">
+                            <h5 class="card-title">Peinados</h5>
+                            <p class="card-text">Prepárate para cualquier ocasión con nuestros peinados exclusivos.</p>
+                            <a class="btn btn-primary" href="{% url 'crear_solicitud_principal' %}">Agendar Servicio</a>
+                        </div>
+                        {% else %}
+                        <div class="card-body">
+                            <h5 class="card-title">Peinados</h5>
+                            <p class="card-text">Prepárate para cualquier ocasión con nuestros peinados exclusivos.</p>
+                            <a class="btn btn-primary" href="{% url 'login' %}">Agendar Servicio</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Servicio 3 -->
+                <div class="col-md-4">
+                    <div class="card shadow-sm">
+                        <img
+                            src=""
+                            class="card-img-top"
+                            alt="Maquillaje Profesional"
+                        />
+                        {% if user.is_authenticated %}
+                        <div class="card-body">
+                            <h5 class="card-title">Maquillaje Profesional</h5>
+                            <p class="card-text">Luce espectacular con nuestro servicio de maquillaje profesional.</p>
+                            <a class="btn btn-primary" href="{% url "crear_solicitud_principal" %}">Agendar Servicio</a>
+                        </div>
+                        {% else %}
+                        <div class="card-body">
+                            <h5 class="card-title">Maquillaje Profesional</h5>
+                            <p class="card-text">Luce espectacular con nuestro servicio de maquillaje profesional.</p>
+                            <a class="btn btn-primary" href="{% url "login" %}">Agendar Servicio</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="agendar-cita" class="text-center py-5 bg-light position-relative">
+            <img src="" alt="Marca de Agua" class="marca-de-agua">
+            <div class="container">
+                <h2>¿Listo para una renovación de estilo?</h2>
+                <p class="lead">Reserva tu cita fácilmente con solo un clic.</p>
+                {% if user.is_authenticated %}
+                <a href="{% url 'crear_cita_principal' %}" class="btn btn-secondary">Agendar Cita</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-success">Agendar Cita</a>
+                {% endif %}
+            </div>
+        </section>
+        
+    
+        {% endblock %}
+    </div>
+    
+
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">© 2024 DigiStyle Peluquería. Todos los derechos reservados.</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"
+    ></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"
+    ></script>
+</body>

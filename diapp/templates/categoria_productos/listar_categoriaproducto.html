@@ -1,0 +1,41 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Categorías de Producto {% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+    <h2>Lista de Categorías de Producto</h2>
+    <a class="btn btn-success border-0" href="{% url 'crearcategoriaproducto' %}">Crear categoria producto</a>
+    <br></br>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in object_list %}
+            <tr>
+                <td>{{ categoria.nombre }}</td>
+                <td>{{ categoria.estado|yesno:"Activo,Inactivo" }}</td>
+                <td>{{ categoria.fecha_creacion|date:"d M Y H:i" }}</td>
+                <td>
+                    <a class="btn btn-info" href="{% url 'actualizarcategoriaproducto' categoria.pk %}" role="button">Actualizar</a>
+                    <a class="btn btn-info" href="{% url 'detallecategoriaproducto' categoria.pk %}" role="button">Ver detalles</a>
+                    <a class="btn btn-danger" href="{% url 'eliminarcategoriaproducto' categoria.pk %}" role="button">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay categorías de productos disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Inventario {% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <h2>Lista de Inventario</h2>
+    <a class="btn btn-success border-0" href="{% url 'crearinventario' %}">Crear empleado</a>
+    <br></br>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Fecha de Creación</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inventario in object_list %}
+            <tr>
+                <td>{{ inventario.nombre }}</td>
+                <td>{{ inventario.cantidad }}</td>
+                <td>{{ inventario.fecha_creacion }}</td>
+                <td>{{ inventario.producto.nombre }}</td>
+                <td>
+                    <a class="btn btn-info" href="{% url 'actualizarinventario' inventario.pk %}" role="button">Actualizar</a>
+                    <a class="btn btn-info" href="{% url 'detalleinventario' inventario.pk %}" role="button">Detalles</a>
+                    <a class="btn btn-danger" href="{% url 'eliminarinventario' inventario.pk %}" role="button">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No hay inventarios disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

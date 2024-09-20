@@ -1,0 +1,33 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Clientes  {% endblock %}
+
+{% block contenido %} 
+<div class="card">
+    <div class="card-header">Actualizar empleado</div>
+
+    <div class="card-body">
+
+        <h4 class="card-title">Información del empleado</h4>
+<form method="post">
+    {% csrf_token %}
+    <label for="servicio">Servicio:</label>
+    <select name="servicio" id="servicio">
+        {% for servicio in servicios %}
+            <option value="{{ servicio.id }}" {% if servicio.id == asignacion.servicio.id %}selected{% endif %}>{{ servicio.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="empleado">Empleado:</label>
+    <select name="empleado" id="empleado">
+        {% for empleado in empleados %}
+            <option value="{{ empleado.id }}" {% if empleado.id == asignacion.empleado.id %}selected{% endif %}>{{ empleado.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Actualizar</button>
+</form>
+</div>
+<div class="card-footer text-muted"></div>
+</div>
+{% endblock %}

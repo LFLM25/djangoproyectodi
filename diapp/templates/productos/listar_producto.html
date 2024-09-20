@@ -1,0 +1,65 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Productos {% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+    <h2>Lista de Productos</h2>
+    <a class="btn btn-success border-0" href="{% url 'crearproducto' %}">Crear producto</a>
+    <br></br>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Código de Barras</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio de Compra</th>
+                <th scope="col">Precio de Venta</th>
+                <th scope="col">Impuesto</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Stock Mínimo</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha de Creación</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for producto in object_list %}
+            <tr>
+                <td>{{ producto.codigo_barras }}</td>
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.precio_compra }}</td>
+                <td>{{ producto.precio_venta }}</td>
+                <td>{{ producto.lleva_impuesto|yesno:"Sí,No" }}</td>
+                <td>
+                    {% if producto.imagen %}
+                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" style="max-width: 100px;">
+                    {% else %}
+                        No disponible
+                    {% endif %}
+                </td>
+                <td>{{ producto.stock_min }}</td>
+                <td>{{ producto.stock }}</td>
+                <td>{{ producto.estado|yesno:"Activo,Inactivo" }}</td>
+                <td>{{ producto.fecha_creacion }}</td>
+                <td>{{ producto.categoria }}</td>
+                <td>
+                    <a class="btn btn-info" href="{% url 'actualizarproducto' producto.pk %}" role="button">Actualizar</a>
+                    <a class="btn btn-info" href="{% url 'detalleproducto' producto.pk %}" role="button">Detalles</a>
+                    <a class="btn btn-danger" href="{% url 'eliminarproducto' producto.pk %}" role="button">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="13">No hay productos disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

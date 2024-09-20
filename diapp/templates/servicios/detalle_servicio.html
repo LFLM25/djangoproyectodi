@@ -1,0 +1,27 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Clientes  {% endblock %}
+
+{% block contenido %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h1>{{ object.nombre }}</h1>
+    <p> {{ object.apellido }}</p>
+    <p> {{ object.cargo }}</p>
+    <p> {{ object.salario }}</p>
+    <p> {{ object.correo_electronico }}</p>
+    <p> {{ object.telefono }}</p>
+    <p> {{ object.direccion }}</p>
+    <p> {{ object.fecha_contratacion }}</p>
+
+</body>
+</html>
+
+{% endblock %}

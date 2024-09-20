@@ -1,0 +1,12 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Empleados  {% endblock %}
+
+{% block contenido %} 
+<h1>Esta seguro que quiere eliminar este Empleado: "{{ object.name }}"?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'listaEmpleado' %}">Cancel</a>
+{% endblock %}

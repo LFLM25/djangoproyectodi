@@ -1,0 +1,56 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Empleados  {% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+    <h2>Lista de empleados</h2>
+    <a class="btn btn-success border-0" href="{% url 'register_empleado' %}">Crear empleado</a>
+    <br></br>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cargo</th>
+                <th>Correo Electrónico</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Salario</th>
+                <th>Fecha de Contratación</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+            <tr>
+                <td>{{ item.first_name }}</td>
+                <td>{{ item.last_name }}</td>
+                <td>{{ item.cargo }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.telefono }}</td>
+                <td>{{ item.direccion }}</td>
+                <td>{{ item.salario }}</td>
+                <td>{{ item.fecha_contratacion }}</td>
+                <td>{{ item.estado }}</td>
+                <td>
+                    <a class="btn btn-info" href="{% url 'actualizarEmpleado' item.pk %}" role="button">Actualizar</a>
+                    <a class="btn btn-info" href="{% url 'detalleEmpleado' item.pk %}" role="button">Detalles</a>
+                    <a class="btn btn-danger" href="{% url 'eliminarEmpleado' item.pk %}" role="button">Eliminar</a>
+
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10">No hay empleados disponibles.</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Lista de Citas {% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+    <h2>Lista de Citas</h2>  
+    <a href="{% url 'crear_cita_dashboard' %}" class="btn btn-success">Crear Cita</a>
+    <br></br>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Fecha y Hora</th>
+                <th scope="col">Servicio</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Empleado</th>
+                <th scope="col">Estado de Cita</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha de Creación</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cita in citas %}
+            <tr>
+                <td>{{ cita.fecha_hora }}</td>
+                <td>{{ cita.servicio }}</td>
+                <td>{{ cita.cliente }}</td>
+                <td>{{ cita.empleado }}</td>
+                <td>{{ cita.estado_cita }}</td>
+                <td>{{ cita.estado|yesno:"Activo,Inactivo" }}</td>
+                <td>{{ cita.fecha_creacion }}</td>
+                <td>
+                    <a class="btn btn-info" href="{% url 'actualizarcita' cita.pk %}" role="button">Actualizar</a>
+                    <a class="btn btn-info" href="{% url 'detallecita' cita.pk %}" role="button">Detalles</a>
+                    <a class="btn btn-danger" href="{% url 'eliminarcita' cita.pk %}" role="button">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="13">No hay productos disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

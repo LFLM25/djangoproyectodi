@@ -1,0 +1,38 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Asignaciones  {% endblock %}
+
+{% block contenido %} 
+
+<div class="container mt-4">
+    <h2>Lista de asignaciones</h2>
+    <a class="btn btn-success border-0" href="{% url 'crear_asignacion' %}">Crear asignacion</a>
+    <br></br>
+<table class="table table-primary">
+    <thead>
+        <tr>
+            <th scope="col">Servicio</th>
+            <th scope="col">Empleado</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for asignacion in asignaciones %}
+            <tr>
+                <td>{{ asignacion.servicio.nombre }}</td>
+                <td>{{ asignacion.empleado.nombre }}</td>
+                <td>
+                    <a class="btn btn-info" href="{% url 'actualizar_asignacion' asignacion.id %}" role="button">Actualizar</a>
+                    <a class="btn btn-danger" href="{% url 'eliminar_asignacion' asignacion.id %}" role="button">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="13">No hay productos disponibles.</td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Clientes  {% endblock %}
+
+{% block contenido %} 
+
+<div class="container mt-4">
+    <h2>Lista de clientes</h2>
+    <a class="btn btn-success border-0" href="{% url 'crear_cliente_dashboard' %}">Crear cliente</a>
+    <br></br>
+    <table class="table table-primary">
+        <thead>
+
+            <tr>
+                <th>Número de Documento</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Correo Electrónico</th>
+                <th>Estado</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.n_documento }}</td>
+                <td>{{ cliente.first_name }}</td>
+                <td>{{ cliente.last_name }}</td>
+                <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.email }}</td>
+                <td>{{ cliente.estado }}</td>
+                <td>{{ cliente.fecha_creacion }}</td>
+                <td>
+                    <a class="btn btn-info" href="{% url 'actualizar' cliente.pk %}" role="button">Actualizar</a>
+                    <a class="btn btn-danger" href="{% url 'eliminar' cliente.pk %}" role="button">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">No hay clientes disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

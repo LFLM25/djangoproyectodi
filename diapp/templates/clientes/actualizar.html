@@ -1,0 +1,18 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Clientes  {% endblock %}
+
+{% block contenido %} 
+
+<div class="container">
+    <h2>Actualizar Cliente</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+    <a class="btn btn-secondary" href="{% url 'clientes' %}">Cancelar</a>
+</div>
+
+
+{% endblock %}

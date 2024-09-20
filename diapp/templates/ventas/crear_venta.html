@@ -1,0 +1,26 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Crear Venta {% endblock %}
+
+{% block contenido %}
+
+<div class="card">
+    <div class="card-header">Crear Venta</div>
+    <div class="card-body">
+        <h4 class="card-title">Información de la venta</h4>
+    <form method="post">
+        {% csrf_token %}        
+        {{ form.as_p }}
+        {{ detalle_venta_formset.management_form }}
+        <h4>Detalles de la Venta</h4>
+        {% for form in detalle_venta_formset %}
+            <div class="form-row">
+                {{ form.as_p }}
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success">Guardar Venta</button>
+    </form>
+</div>
+
+{% endblock %}

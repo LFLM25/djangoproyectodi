@@ -1,0 +1,145 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{% block titulo %}{% endblock %}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous" />
+<style>
+    body {
+        font-family: 'Poppins', sans-serif; /* Una fuente más moderna */
+        background-color: #f4f4f9; /* Color de fondo más claro */
+    }
+    
+    /* Sidebar */
+    .sidebar {
+        height: 140vh;
+        background: linear-gradient(180deg, #00b4d8, #90e0ef); /* Gradiente vibrante */
+        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    }
+    
+    .sidebar a {
+        color: #f4f4f9; /* Color de texto claro */
+        padding: 15px;
+        display: block;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease, padding-left 0.3s ease;
+    }
+    
+    .sidebar a:hover {
+        background-color: #0077b6; /* Color de hover más vibrante */
+        padding-left: 10px; /* Efecto de desplazamiento suave */
+    }
+    
+    /* Navbar */
+    .navbar {
+        background-color: #00b4d8; /* Azul vibrante */
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    }
+    
+    .navbar a {
+        color: white;
+        transition: color 0.3s ease;
+    }
+    
+    .navbar a:hover {
+        color: #0077b6; /* Cambiar color al pasar sobre los enlaces */
+    }
+    
+    /* Contenido principal */
+    .content {
+        flex-grow: 1;
+        padding: 0px;
+        background-color: #ffffff; /* Fondo claro para mayor contraste */
+        border-radius: 0px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    }
+    
+</style>
+</head>
+<body>
+<div class="d-flex">
+    <!-- Sidebar -->
+    <div class="sidebar p-3">
+        <h4 class="text-white">Digistyle</h4>
+        <a href="{% url 'clientes' %}">Clientes</a>
+        <a href="{% url 'listaEmpleado' %}">Empleados</a>
+        <a href="{% url 'listaProducto' %}">Productos</a>
+        <a href="{% url 'listaUsuario' %}">Usuarios</a>
+        <a href="{% url 'listacita' %}">Citas</a>
+        <a href="{% url 'listaventa' %}">Ventas</a>
+        <a href="{% url 'listasolicitud' %}">Solicitudes</a>
+        <a href="{% url "listainventario" %}">inventarios</a>
+        <a href="{% url 'listaservicio' %}">Servicios</a>
+        <a href="{% url 'listacategoriaservicio' %}">Categoria servicios</a>
+        <a href="{% url 'listacategoriaproducto' %}">Categoria productos</a>
+        <a href="{% url 'lista_asignacion' %}">Asignaciones</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content w-100">
+        <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="backgraund-color: #343a40">
+        <div class="container-fluid">
+            <!-- Botón para colapsar la navbar en pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            {% if user.is_authenticated %}
+            <center><div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Notificaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "reportes" %}">Reportes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register_empleado' %}">Registrarse Empleado</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'inicio' %}">Salir</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/" class="btn btn-primary">Ir al Panel de Administración</a>
+                    </li>
+                </ul>
+            </div></center>
+            {% endif %}
+        </div>
+    </nav>
+
+
+        <!-- Dashboard Content -->
+        <div>
+            {% block contenido %}
+            <!-- Aquí puedes incluir gráficas, tablas, y otros componentes del dashboard -->
+            <h2>Bienvenido al Dashboard</h2>
+            <p>Selecciona una opción en la barra lateral para comenzar.</p>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+</html>

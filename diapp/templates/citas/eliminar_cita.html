@@ -1,0 +1,12 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Citas  {% endblock %}
+
+{% block contenido %} 
+<h1>Esta seguro que quiere eliminar la cita: "{{ object.name }}"?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, delete</button>
+</form>
+<a href="{% url 'listacita' %}">Cancel</a>
+{% endblock %}

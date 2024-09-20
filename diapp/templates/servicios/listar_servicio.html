@@ -1,0 +1,45 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Lista de Servicios {% endblock %}
+
+{% block contenido %}
+<div class="container mt-4">
+    <h2>Lista de Servicios</h2>
+    <a class="btn btn-success" href="{% url 'crearservicio' %}">Crear servicio</a>
+    <br></br>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Duración</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha de Creación</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servicio in object_list %}
+            <tr>  <!-- Índice numérico -->
+                <td>{{ servicio.nombre }}</td>
+                <td>{{ servicio.descripcion }}</td>
+                <td>{{ servicio.duracion }}</td>
+                <td>{{ servicio.precio }}</td>
+                <td>{{ servicio.categoria.nombre }}</td>
+                <td>{{ servicio.estado|yesno:"Activo,Inactivo" }}</td>
+                <td>{{ servicio.fecha_creacion|date:"d M Y H:i" }}</td>            
+                <td>
+                    <a class="btn btn-info" href="{% url 'actualizarservicio' servicio.pk %}" role="button">Actualizar</a>
+                    <a class="btn btn-info" href="{% url 'detalleservicio' servicio.pk %}" role="button">Ver detalles</a>
+                    <a class="btn btn-danger" href="{% url 'eliminarservicio' servicio.pk %}" role="button">Eliminar</a>
+                </td> 
+            </tr>      
+            {% empty %}
+            <p>No hay servicios disponibles.</p>
+            {% endfor%}
+        </tbody>
+    </table> 
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %} Usuarios {% endblock %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+    <h2>Lista de Usuarios</h2>
+    <table class="table table-primary">
+        <thead>
+            <tr>
+                <th scope="col">Contraseña</th>
+                <th scope="col">Último Login</th>
+                <th scope="col">Superusuario</th>
+                <th scope="col">Nombre de Usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Email</th>
+                <th scope="col">Staff</th>
+                <th scope="col">Activo</th>
+                <th scope="col">Fecha de Ingreso</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Fecha de Creación</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in object_list %} 
+            <tr>
+                <td>*******</td> 
+                <td>{{ usuario.last_login }}</td>
+                <td>{{ usuario.is_superuser|yesno:"Sí,No" }}</td>
+                <td>{{ usuario.username }}</td>
+                <td>{{ usuario.first_name }}</td>
+                <td>{{ usuario.last_name }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.is_staff|yesno:"Sí,No" }}</td>
+                <td>{{ usuario.is_active|yesno:"Sí,No" }}</td>
+                <td>{{ usuario.date_joined }}</td>
+                <td>{{ usuario.estado|yesno:"Activo,Inactivo" }}</td>
+                <td>{{ usuario.fecha_creacion }}</td>
+                <td>
+                    <a class="btn btn-danger" href="{% url 'eliminarUsuario' usuario.pk %}" role="button">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="14">No hay usuarios disponibles.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

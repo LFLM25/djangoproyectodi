@@ -1,0 +1,32 @@
+{% extends "dashboard.html" %}
+
+{% block titulo %}  Categoria de Servicio  {% endblock %}
+
+{% block contenido %} 
+
+<div class="card">
+    <div class="card-header">Crear categoria servicio</div>
+
+    <div class="card-body">
+
+        <h4 class="card-title">Información de categoria servicio</h4>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        <div class="alert alert-danger">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a class="btn btn-secondary" href="{% url 'listacategoriaservicio' %}">Cancelar</a>
+        </form>
+    </div>
+    <div class="card-footer text-muted"></div>
+</div>
+{% endblock %}
